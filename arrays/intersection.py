@@ -15,7 +15,7 @@ def intersection(nums1: list[int], nums2: list[int]) -> list[int]:
     #     i += 1
     #     j = 0
     #
-    # return [*set(list),]
+    # return list
     #
 
     nums1, nums2 = set(nums1), set(nums2)
