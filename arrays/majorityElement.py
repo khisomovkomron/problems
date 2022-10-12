@@ -28,7 +28,8 @@ The zip() function returns an iterator of tuples based on the iterable objects.
 Suppose, two iterables are passed to zip(); one iterable containing three and other containing five elements.
 Then, the returned iterator will contain three tuples. It's because the iterator stops when the shortest iterable is exhausted.
 """
-numbers = [1,2,3,4,5]
+
+numbers = [1, 2, 3, 4, 5]
 words = ['one', 'two', 'three', 'four', 'five']
 
 result = list(zip(numbers, words))

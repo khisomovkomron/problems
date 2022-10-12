@@ -10,8 +10,6 @@ def containsNearbyDuplicate(nums: list[int], k: int) -> bool:
                 return True
         d[num] = i
     return False
-            
-
-
+    
 
 print(containsNearbyDuplicate(nums=[1,2,3,1,2,3], k=2))

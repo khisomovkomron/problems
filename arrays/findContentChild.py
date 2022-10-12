@@ -1,6 +1,5 @@
 def findContentChildren(g: list[int], s: list[int]) -> int:
 
-
     count = 0
     i = 0
     j = 0
