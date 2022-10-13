@@ -16,6 +16,18 @@ class LinkedList:
         # WE CAN ACCESS THIS NODE EXCLUSIVELY !!!
         self.head = None
         self.num_of_nodes = 0
+        
+    def reversed(self):
+        current_node = self.head
+        next_node = None
+        previous_node = None
+        
+        while current_node:
+            next_node = current_node.next_node
+            current_node.next_node = previous_node
+            previous_node = current_node
+            current_node = next_node
+        self.head = previous_node
 
     # O(1) constant running time
     def insert_start(self, data):
