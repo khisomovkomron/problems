@@ -46,6 +46,7 @@ async def main():
 
 ######## Coroutines ###########
 async def nested():
+    print(42)
     return 42
 
 async def main4():
@@ -62,11 +63,11 @@ async def main4():
 ####### Tasks ##################
 # When a coroutine is wrapped into a Task with functions like asyncio.create_task()
 # the coroutine is automatically scheduled to run soon:
-async def nested():
-    return 42
+
 
 async def wild():
     await asyncio.sleep(0.1)
+    print(41)
     return 41
 
 async def main5():
@@ -83,25 +84,80 @@ async def main5():
 
 ######### Futures ##########
 
+async def function_that_returns_a_future_object():
+    return "a future"
+
 async def main6():
     
     await function_that_returns_a_future_object()
     
-    await asyncio.gather(
+    print(await asyncio.gather(
         function_that_returns_a_future_object(),
         nested()
+    ))
+    
+    
+#### TaskCancellation
+# tasks can be easily and safely be cancelled. When a task is cancelled, asyncio.CancelledError
+# will be raised in the task at the next opportunity
+
+# User try/finally block for coroutines to robostly perform clean-up logic
+
+
+
+#### TaskGroups ####
+# task groups combine a task creation with a convenient and reliable way to wait for all
+# tasks in the group to finish
+
+async def main7():
+    
+    # python 3.11
+    # async with asyncio.TaskGroup() as tg:
+    #     task1 = tg.create_task(nested())
+    #     task2 = tg.create_task(wild())
+    
+    await asyncio.gather(nested(), wild())
+        
+    print('Both tasks have completed now')
+    
+    
+#### Creating Tasks ####
+# Wrap the coro coroutine into a Task and schedule its execution. Return the Task object.
+# background_tasks = set()
+# for i in range(10):
+#     task = asyncio.create_task(nested())
+#
+#     background_tasks.add(task)
+
+#### Running Tasks Concurrently ####
+
+async def factorial(name, number):
+    f = 1
+    for i in range(2, number + 1):
+        print(f"Task {name}: Compute factorial({number}), currently i={i}...")
+        await asyncio.sleep(1)
+        f *= i
+    print(f"Task {name}: factorial({number}) = {f}")
+    return f
+
+
+async def main8():
+    L = await asyncio.gather(
+        factorial('A', 8),
+        factorial('B', 6),
+        factorial('C', 4)
     )
+    print(L)
     
 
 if __name__ == '__main__':
     # asyncio.run(main1())
-    
     # asyncio.run(main2())
-    
     # asyncio.run(main3())
-    
     # asyncio.run(main4())
-    
     # asyncio.run(main5())
+    # asyncio.run(main6())
+    # asyncio.run(main7())
+    asyncio.run(main8())
     
-    asyncio.run(main6())
+
