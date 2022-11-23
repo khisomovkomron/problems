@@ -2,6 +2,21 @@ import pathlib
 from abc import ABC, abstractmethod
 
 
+""""
+AbstractClass1(ABC)
+Class1(AbstractClass1)
+
+AbstractClass2(ABC)
+Class2(AbstractClass2)
+
+AbstractFactory(ABC)
+FactoryClass1(AbstractFactory)
+FactoryClass2(AbstractFactory)
+FactoryClass2(AbstractFactory)
+
+create any function that selects factories from dictionary
+"""
+
 class VideoExporter(ABC):
     
     @abstractmethod
@@ -73,7 +88,7 @@ class WAVAudioExporter(AudioExporter):
     def do_export(self, folder: pathlib.Path):
         print(f"Exporting audio data in WAV format to {folder}.")
 
-
+## ABSTRACT FACTORY CLASS
 class ExportFactory(ABC):
     
     @abstractmethod
@@ -83,7 +98,7 @@ class ExportFactory(ABC):
     def get_audio_exporter(self) -> AudioExporter:
         """Returns a new audio exporter belonging to this factory"""
         
-        
+# FACTORY CLASS1
 class FastExporter(ExportFactory):
     """Factory aimed at providing a high speed, lower quality export."""
 
@@ -94,6 +109,7 @@ class FastExporter(ExportFactory):
         return AACAudioExporter()
 
 
+# FACTORY CLASS2
 class HighQualityExporter(ExportFactory):
     """Factory aimed at providing a slower speed, high quality export."""
 
@@ -104,6 +120,7 @@ class HighQualityExporter(ExportFactory):
         return AACAudioExporter()
 
 
+# FACTORY CLASS3
 class MasterQualityExporter(ExportFactory):
     """Factory aimed at providing a low speed, master quality export."""
 
