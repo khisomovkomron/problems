@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class House():
     
     def __init__(self, building_type='Apartment', doors=0,
@@ -14,7 +15,7 @@ class House():
             f"{self.building_type} with {self.doors} "\
             f"door(s) and {self.windows} window(s)."
 
-
+# INTERFACE
 class IHouserBuilder(ABC):
     
     @staticmethod
