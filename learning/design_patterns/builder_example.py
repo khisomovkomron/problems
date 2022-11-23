@@ -1,8 +1,21 @@
 from abc import ABC, abstractmethod
 
+"""
+Product
+AbstractBuilder(ABC) - Builder Interface
+Builder(AbstractBuilder) --> creates composition with product
 
-class House():
-    
+Director1.construct()
+Director2.construct()
+Director2.construct()
+
+Client Application
+
+"""
+
+
+class House:
+    "The Product"
     def __init__(self, building_type='Apartment', doors=0,
                  windows=0, wall_material='Brick'):
         self.wall_material = wall_material
@@ -17,7 +30,7 @@ class House():
 
 # INTERFACE
 class IHouserBuilder(ABC):
-    
+    "The House Builder Interface"
     @staticmethod
     @abstractmethod
     def set_building_type(building_type):
@@ -68,7 +81,8 @@ class HouseBuilder(IHouserBuilder):
     def get_result(self):
         return self.house
     
-
+    
+# HOUSEBOAT DIRECTOR
 class HouseBoatDirector:
     
     @staticmethod
@@ -81,7 +95,8 @@ class HouseBoatDirector:
                 .set_number_windows(8)\
                 .get_result()
     
-    
+
+# CASTLE DIRECTOR
 class CastleDirector:
 
     @staticmethod
@@ -94,6 +109,7 @@ class CastleDirector:
             .get_result()
     
     
+# IGLOO DIRECTOR
 class IglooDirector:  # pylint: disable=too-few-public-methods
 
     @staticmethod
@@ -104,7 +120,8 @@ class IglooDirector:  # pylint: disable=too-few-public-methods
             .set_number_doors(1)\
             .get_result()
     
-    
+
+# CLIENT APPLICATION
 IGLOO = IglooDirector.construct()
 CASTLE = CastleDirector.construct()
 HOUSEBOAT = HouseBoatDirector.construct()
