@@ -1,8 +1,7 @@
-
 class Decorators:
     
     def __init__(self, new, old, other):
-        self.__new = new # private instance of attribute value
+        self.__new = new  # private instance of attribute value
         self.__old = old
         self.__other = other
     
@@ -20,11 +19,11 @@ class Decorators:
     @property
     def old(self):
         return self.__old
-
+    
     @old.setter
     def old(self, value):
         self.__old = value
-  
+    
     @property
     def others(self):
         return self.__other
@@ -36,15 +35,32 @@ class Decorators:
         del self.__other
 
 
-decorators = Decorators('new', 'old', 'others')
-print(decorators.old)
-print(decorators.new)
-print(decorators.others)
+# decorators = Decorators('new', 'old', 'others')
+# print(decorators.old)
+# print(decorators.new)
+# print(decorators.others)
+#
+# decorators.old = "OLD1"
+# decorators.new = "NEW1"
+# print(decorators.old)
+# print(decorators.new)
+#
+# del decorators.others
+# print(decorators.others)
 
-decorators.old = "OLD1"
-decorators.new = "NEW1"
-print(decorators.old)
-print(decorators.new)
 
-del decorators.others
-print(decorators.others)
+class Student:
+    name = 'John'
+    
+    def __init__(self, age):
+        self.age = age
+    
+    # It can access class attributes, but not the instance attributes.
+    @classmethod
+    def new_classmethod(cls):
+        print(f'Get new_classmethod and class attribute {cls.name}')
+        # f'but cannot access instance attributes age: {cls.age} ')
+
+
+student = Student('20')
+student.new_classmethod()
