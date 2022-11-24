@@ -58,9 +58,17 @@ class Student:
     # It can access class attributes, but not the instance attributes.
     @classmethod
     def new_classmethod(cls):
-        print(f'Get new_classmethod and class attribute {cls.name}')
+        print(f'Get new_classmethod and class attribute: {cls.name}')
         # f'but cannot access instance attributes age: {cls.age} ')
 
-
+    # staticmethod cannot access the class attributes or instance attributes
+    @staticmethod
+    def new_staticmethod():
+        name = "Fred"
+        age = '21'
+        print(f'Get new_staticmethod and static name: {name} and age: {age} ')
+        
+        
 student = Student('20')
 student.new_classmethod()
+student.new_staticmethod()
