@@ -48,4 +48,6 @@ if __name__ == '__main__':
     # delattr(new1_person, 'address')
     print(new1_person.name)
 
+    num = 10
     
+    print(int("123"))
