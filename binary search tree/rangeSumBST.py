@@ -22,10 +22,10 @@ class Solution:
 
         inorder(root, ls)
 
-        sum_list = []
-        
-        for i in range(len(ls)):
-            if low <= ls[i] <= high:
-                sum_list.append(ls[i])
+        sum_list = [ls[i] for i in range(len(ls)) if low <= ls[i] <= high]
+
+        # for i in range(len(ls)):
+        #     if low <= ls[i] <= high:
+        #         sum_list.append(ls[i])
 
         return sum(sum_list)
