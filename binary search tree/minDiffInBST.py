@@ -8,6 +8,8 @@ class TreeNode:
         self.left= left
         self.right = right
 
+class Solution:
+
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
         ls = []
         self.inorder(root, ls)
