@@ -8,6 +8,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
 
     def increasingBST(self, root: Optional[TreeNode]) -> TreeNode:
