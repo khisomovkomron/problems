@@ -37,6 +37,7 @@ class Heap:
             self.fix_up(parent_index)
 
     def get_max(self):
+        _
 
         return self.heap[0]
 
