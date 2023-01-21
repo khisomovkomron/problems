@@ -8,7 +8,7 @@ class Heap:
         # this is the actual number of items in the data structure
         self.head_size = 0
         # the underlying list data structure
-        self.heap = [0]*CAPACITY
+        self.heap = [0] * CAPACITY
 
     def insert(self, item):
 
@@ -20,7 +20,7 @@ class Heap:
         self.head_size = self.head_size + 1
 
         # check the heap properties
-        self.fix_up(self.head_size-1)
+        self.fix_up(self.head_size - 1)
 
     # starting with actual node we have inserted up to root node
     # we have to compare the values whether to make swap operations
@@ -46,7 +46,7 @@ class Heap:
         max_item = self.get_max()
 
         # Swap the root node with the last item and "heapify"
-        self.heap[0], self.heap[self.head_size-1] = self.heap[self.head_size-1], self.heap[0]
+        self.heap[0], self.heap[self.head_size - 1] = self.heap[self.head_size - 1], self.heap[0]
         self.head_size = self.head_size - 1
 
         # make sure the heap is "heapify"
@@ -78,12 +78,23 @@ class Heap:
             print(max_item)
 
 
-if __name__ == "__main__":
-     heap = Heap()
-     heap.insert(5)
-     heap.insert(92)
-     heap.insert(3)
-     heap.insert(4)
-     heap.insert(2)
+def is_min_heap(heap):
+    num_items = (len(heap) - 2) // 2 + 1
 
-     heap.heap_sort()
+    for i in range(num_items):
+
+        if heap[i] > heap[2 * 1 + 1] or heap[i] > heap[2 * 1 + 2]:
+            return False
+
+    return True
+
+
+if __name__ == "__main__":
+    heap = Heap()
+    heap.insert(5)
+    heap.insert(92)
+    heap.insert(3)
+    heap.insert(4)
+    heap.insert(2)
+
+    heap.heap_sort()
