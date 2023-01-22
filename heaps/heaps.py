@@ -89,6 +89,35 @@ def is_min_heap(heap):
     return True
 
 
+class HeapTransform:
+
+    def __init__(self, heap):
+        self.heap = heap
+
+    def transform(self):
+
+        for i in range((len(self.heap)-2)//2, -1,-1):
+            self.fix_down(i)
+
+    def fix_down(self, index):
+        index_left = 2 * index + 1
+        index_right = 2 * index + 2
+
+        # in a max heap the parent is always greater than the children
+        largest_index = index
+
+        # looking for the largest (parent or left node)
+        if index_left < len(self.heap) and self.heap[index_left] > self.heap[largest_index]:
+            largest_index = index_left
+
+        if index_right < len(self.heap) and self.heap[index_right] > self.heap[largest_index]:
+            largest_index = index_right
+
+        if index != largest_index:
+            self.heap[index], self.heap[largest_index] = self.heap[largest_index], self.heap[index]
+            self.fix_down(largest_index)
+
+
 if __name__ == "__main__":
     heap = Heap()
     heap.insert(5)
