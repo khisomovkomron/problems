@@ -56,9 +56,9 @@ class Solution:
 if __name__ == "__main__":
 
     findRR = Solution()
-    # result = findRR.findRelativeRanks(score=[5,4,3,2,1])
-    # assert result == ["Gold Medal","Silver Medal","Bronze Medal","4","5"]
-    #
+    result = findRR.findRelativeRanks(score=[5,4,3,2,1])
+    assert result == ["Gold Medal","Silver Medal","Bronze Medal","4","5"]
+
     result2 = findRR.findRelativeRanks(score=[10,3,8,9,4])
-    #
-    # assert result2 == ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
+
+    assert result2 == ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
