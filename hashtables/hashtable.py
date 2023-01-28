@@ -5,7 +5,7 @@ class Hashtable:
     def __init__(self):
 
         self.capacity = 10
-        self.keys = [None]*self.capacity
+        self.keys = [None] * self.capacity
         self.values = [None] * self.capacity
 
     def insert(self, key, data):
@@ -19,11 +19,12 @@ class Hashtable:
             if self.keys[index] == key:
                 self.values[index] = data
                 return
+            index = (index + 1) % self.capacity
 
         # do linear probing (try next slot in the array)
         # because we may increment the index such that we are outside the range
         # of the underlying list
-        index = (index + 1) % self.capacity
+
 
         # we have found the valid slot for the item
         # so we have to insert the data
@@ -42,6 +43,7 @@ class Hashtable:
 
         # the given key value pair with key does not exist in the hashtable
         return None
+
     def hash_function(self, key):
 
         hash_sum = 0
@@ -52,9 +54,17 @@ class Hashtable:
         return hash_sum % self.capacity
 
 
-
 if __name__ == "__main__":
 
     table = Hashtable()
+    table.insert('Adam', 23)
+    table.insert('Kevin', 45)
+    table.insert('Daniel', 34)
+    adam = table.get('Adam')
+    kevin = table.get('Kevin')
+    daniel = table.get('Daniel')
 
-    print(table.hash_function('adam'))
+    assert adam == 23
+    assert kevin == 45
+    assert daniel != 23
+    print(adam, kevin, daniel)
